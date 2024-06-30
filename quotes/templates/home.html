@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+    {{ticker}}
+{% endif %}
+
+{% if api %}
+    {% if api == "ERROR!!!" %}
+        There is an error, Please try again!
+    {% else %}
+
+        {%for field in api.body%}
+        <br/>
+        <h1>{{field.shortName}}</h1><br/>
+        <ul>
+            Symbol: {{field.symbol}}<br/>
+            Regular Market Price: ${{field.regularMarketPrice}}<br/>
+            Regular Market Previous Close: {{field.regularMarketPreviousClose}}<br/>
+            Market Cap: {{field.marketCap}}<br/>
+            52 Week High: {{field.fiftyTwoWeekHigh}}<br/>
+            52 Week Low: {{field.fiftyTwoWeekLow}}<br/>
+        </ul>
+        {%endfor%}
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}
